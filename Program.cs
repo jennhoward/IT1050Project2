@@ -4,49 +4,38 @@ namespace _1050ITproject2
 {
     class Program
     {
-        public static double SumOfAllAges;
-
         static void Main(string[] args)
         {
-            Person p1 = new Person(); //John Doe 34 Spouse.Jane Spouse.Doe Spouse.32 (Spouse of Spouse)
-            System.Console.WriteLine("Enter Your First Name: ");
-            p1.FirstName = System.Console.ReadLine();
-            p1.Spouse.Spouse = p1.FirstName;
-            System.Console.WriteLine("Enter Your Last Name: ");
-            p1.LastName = System.Console.ReadLine();
-            System.Console.WriteLine("Enter Your Age: ");
-            p1.Age = int.Parse(System.Console.ReadLine());
-            SumOfAllAges = SumOfAllAges + p1.Age;
-            System.Console.WriteLine("Enter Your Spouse's First Name: ");
-            p1.Spouse.FirstName = System.Console.ReadLine();
+            //John Doe 34 Spouse.Jane
+            //Spouse.Doe Spouse.32 Spouse.Spouse.John
+            Person p1 = new Person();
+            p1.FirstName = "John"; p1.LastName = "Doe";
+            p1.Age = 34;
+            p1.Spouse = new Person();
+            p1.Spouse.FirstName = "Jane";
             p1.Spouse.LastName = p1.LastName;
-            System.Console.WriteLine("Enter Your Spouse's Age: ");
-            p1.Spouse.Age = int.Parse(System.Console.ReadLine());
-            SumOfAllAges = SumOfAllAges + p1.Spouse.Age;
+            p1.Spouse.Age = 32;
+            p1.Spouse.Spouse = p1;
 
-            Person p2 = new Person(); //David Smith 76 Spouse.Dora Spouse.Smith Spouse.64 (Spouse of Spouse)
-            System.Console.WriteLine("Enter Your First Name: ");
-            p2.FirstName = System.Console.ReadLine();
-            p2.Spouse.Spouse = p2.FirstName;
-            System.Console.WriteLine("Enter Your Last Name: ");
-            p2.LastName = System.Console.ReadLine();
-            System.Console.WriteLine("Enter Your Age: ");
-            p2.Age = int.Parse(System.Console.ReadLine());
-            SumOfAllAges = SumOfAllAges + p2.Age;
-            System.Console.WriteLine("Enter Your Spouse's First Name: ");
-            p2.Spouse.FirstName = System.Console.ReadLine();
+            //David Smith 76 Spouse.Dora
+            //Spouse.Smith Spouse.64 Spouse.Spouse.John
+            Person p2 = new Person(); 
+            p2.FirstName = "David";
+            p2.LastName = "Smith";
+            p2.Age = 76;
+            p2.Spouse = new Person();
+            p2.Spouse.FirstName = "Dora";
             p2.Spouse.LastName = p2.LastName;
-            System.Console.WriteLine("Enter Your Spouse's Age: ");
-            p2.Spouse.Age = int.Parse(System.Console.ReadLine());
-            SumOfAllAges = SumOfAllAges + p2.Spouse.Age;
+            p2.Spouse.Age = 64;
+            p2.Spouse.Spouse = p2;
 
-            Person.PrintNameAndAge(p1);
-            Person.PrintNameAndAge(p1.Spouse);
-            Person.PrintNameAndAge(p2);
-            Person.PrintNameAndAge(p2.Spouse);
+            p1.PrintNameAndAge();
+            p1.Spouse.PrintNameAndAge();
+            p2.PrintNameAndAge();
+            p2.Spouse.PrintNameAndAge();
 
-            System.Console.WriteLine("Average Age = " + (SumOfAllAges / 4));
-            //(p1.Age + p2.Spouse.Age + p2.Age + p2.Spouse.Age) / 4 = 51.5
+            SumOfAllAges = p1.Age + p1.Spouse.Age + p2.Age + p2.Spouse.Age;
+            Console.WriteLine(SumOfAllAges / 4);
 
         }
     }
